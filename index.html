@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FastBite - Comida Rápida e Saborosa</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo" tabindex="0">FastBite</div>
+    <nav aria-label="Menu de navegação principal">
+      <a href="#menu" tabindex="0">Cardápio</a>
+      <a href="#about" tabindex="0">Sobre Nós</a>
+      <a href="#contact" tabindex="0">Contato</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" role="banner" aria-label="Banner principal do FastBite">
+      <h1>Comida rápida, sabor que conquista</h1>
+      <p>Experimente os melhores lanches artesanais preparados na hora para você.</p>
+      <button class="btn-primary" onclick="alert('Em breve, peça online!')" aria-label="Faça seu pedido online">Peça Agora</button>
+    </section>
+
+    <section id="menu" aria-label="Cardápio principal">
+      <h2>Nossos Produtos</h2>
+      <div class="menu-grid" id="menuGrid">
+        <!-- Produtos serão carregados dinamicamente aqui -->
+      </div>
+    </section>
+
+    <section id="about" aria-label="Sobre a empresa FastBite">
+      <h2>Sobre Nossa Empresa</h2>
+      <p style="max-width: 720px; margin: 0 auto; font-size: 1.1rem; color: #444;">
+        A FastBite é uma rede de fast food fundada em 2015, dedicada a oferecer lanches deliciosos, feitos com ingredientes selecionados e preparados na hora.
+        Valorizamos a qualidade, agilidade e o atendimento a nossos clientes. Estamos presentes em várias cidades com equipes treinadas para deixar sua experiência saborosa e rápida.
+      </p>
+    </section>
+
+    <section id="contact" aria-label="Contato da FastBite" class="contact">
+      <h3>Contato</h3>
+      <p>Telefone: <a href="tel:+5521999998888">(21) 99999-8888</a></p>
+      <p>Email: <a href="mailto:contato@fastbite.com.br">contato@fastbite.com.br</a></p>
+      <p>Endereço: Rua das Delícias, 123 - Rio de Janeiro, RJ</p>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    &copy; 2015 FastBite - Todos os direitos reservados.
+  </footer>
+
+  <script>
+    // URL base da API backend - ajuste se seu backend estiver em outro local/porta
+    const API_BASE = 'http://localhost:3000/api';
+
+    // Função para formatar preço no formato brasileiro
+    function formatarPreco(valor) {
+      return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    // Função para criar um card de produto
+    function criarCardProduto(produto) {
+      const card = document.createElement('article');
+      card.className = 'menu-card';
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-labelledby', `produto-${produto.produto_id}-titulo`);
+      card.setAttribute('aria-describedby', `produto-${produto.produto_id}-desc produto-${produto.produto_id}-preco`);
+
+      const img = document.createElement('img');
+      img.src = produto.url_imagem || 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8e640c8c-8e66-496c-9b2c-2ccd59547e1a.png';
+      img.alt = produto.descricao || produto.nome;
+      card.appendChild(img);
+
+      const info = document.createElement('div');
+      info.className = 'menu-info';
+
+      const titulo = document.createElement('h3');
+      titulo.id = `produto-${produto.produto_id}-titulo`;
+      titulo.className = 'menu-title';
+      titulo.textContent = produto.nome;
+      info.appendChild(titulo);
+
+      const desc = document.createElement('p');
+      desc.id = `produto-${produto.produto_id}-desc`;
+      desc.className = 'menu-description';
+      desc.textContent = produto.descricao || 'Descrição não disponível.';
+      info.appendChild(desc);
+
+      const preco = document.createElement('div');
+      preco.id = `produto-${produto.produto_id}-preco`;
+      preco.className = 'menu-price';
+      preco.textContent = formatarPreco(produto.preco);
+      info.appendChild(preco);
+
+      const btn = document.createElement('button');
+      btn.className = 'btn-order';
+      btn.textContent = 'Pedir';
+      btn.setAttribute('aria-label', `Pedir ${produto.nome}`);
+      btn.onclick = () => {
+        alert(`Pedido do ${produto.nome} adicionado! (Função de pedido ainda não implementada)`);
+      };
+      info.appendChild(btn);
+
+      card.appendChild(info);
+
+      return card;
+    }
+
+    // Função para carregar produtos da API e montar o cardápio
+    async function carregarProdutos() {
+      try {
+        const response = await fetch(`${API_BASE}/products`);
+        if (!response.ok) throw new Error('Erro ao buscar produtos');
+        const categorias = await response.json();
+
+        const menuGrid = document.getElementById('menuGrid');
+        menuGrid.innerHTML = '';
+
+        categorias.forEach(categoria => {
+          // Criar título da categoria
+          const tituloCat = document.createElement('h3');
+          tituloCat.textContent = categoria.nome;
+          tituloCat.style.color = 'var(--primary)';
+          tituloCat.style.margin = '40px 0 16px';
+          menuGrid.appendChild(tituloCat);
+
+          // Criar container para produtos da categoria
+          const gridCat = document.createElement('div');
+          gridCat.style.display = 'grid';
+          gridCat.style.gridTemplateColumns = 'repeat(auto-fit, minmax(280px, 1fr))';
+          gridCat.style.gap = '32px';
+
+          categoria.produtos.forEach(produto => {
+            const card = criarCardProduto(produto);
+            gridCat.appendChild(card);
+          });
+
+          menuGrid.appendChild(gridCat);
+        });
+      } catch (error) {
+        console.error('Erro carregando produtos:', error);
+        const menuGrid = document.getElementById('menuGrid');
+        menuGrid.innerHTML = '<p style="color: red; text-align: center;">Não foi possível carregar o cardápio no momento. Tente novamente mais tarde.</p>';
+      }
+    }
+
+    // Ao carregar a página, buscar e montar o cardápio
+    window.onload = carregarProdutos;
+  </script>
+</body>
+</html>
+
