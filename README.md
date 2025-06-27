@@ -33,32 +33,28 @@ Ao realizar um pedido, os dados desse pedido são enviados para o servidor, que 
 ## 🔗 Como Integrar o Banco de Dados com o Site via servidor (server.js)  
 A integração é feita por um servidor backend, implementado em Node.js com o framework Express. Esse servidor atua como um “tradutor” entre o site (frontend) e o banco de dados.  
 
-- **Conexão:** Usamos uma variável de ambiente `DATABASE_URL` que indica onde o banco está, seus dados de acesso e qual banco utilizar. Essa informação permite que o backend conecte de forma segura e controla as consultas e comandos SQL.
+- **Conexão:** Utilizei uma variável de ambiente `DATABASE_URL` que indica onde o banco está, seus dados de acesso e qual banco utilizar. Essa informação permite que o backend conecte de forma segura e controle as consultas e comandos SQL.
 
-- **API:** O backend expõe rotas como `/api/products` para o site pedir dados dos produtos, e `/api/orders` para enviar novos pedidos. Quando o site faz uma requisição, o backend executa a consulta no banco, pega os dados, e devolve para o frontend em formato JSON.
+- **API:** O backend expõe rotas como `/api/products` para o site pedir dados dos produtos, e `/api/orders` para enviar novos pedidos. Quando o site faz uma requisição, o backend executa a consulta no banco, pega os dados e devolve para o frontend em formato JSON.
 
-- **Frontend:** No site, usamos JavaScript para fazer essas chamadas assíncronas, montar o cardápio dinamicamente e refletir as mudanças feitas no banco em tempo real para o usuário.
+- **Frontend:** No site, utilizei JavaScript para fazer essas chamadas assíncronas, montar o cardápio dinamicamente e refletir as mudanças feitas no banco em tempo real para o usuário.
 
 ---
 
 ## 🔍 Estratégias de Análise do Objeto  
-Para a análise do objeto Fastbite, utilizamos uma abordagem que envolveu a identificação das necessidades dos usuários e a estruturação do banco de dados de acordo com essas demandas. Realizamos sessões de brainstorming para mapear as funcionalidades essenciais, como a gestão de pedidos e a atualização do cardápio em tempo real. A partir desse mapeamento, definimos as entidades e seus relacionamentos, garantindo que o sistema fosse intuitivo e eficiente. A análise também incluiu a pesquisa de mercado sobre sistemas de pedidos online, permitindo que incorporássemos melhores práticas e inovações que poderiam agregar valor ao projeto.
+Para a análise do objeto Fastbite, utilizei uma abordagem que envolveu a identificação das necessidades dos usuários e a estruturação do banco de dados de acordo com essas demandas. Realizei sessões de brainstorming para mapear as funcionalidades essenciais, como a gestão de pedidos e a atualização do cardápio em tempo real. A partir desse mapeamento, defini as entidades e seus relacionamentos, garantindo que o sistema fosse intuitivo e eficiente. A análise também incluiu a pesquisa de mercado sobre sistemas de pedidos online, permitindo que eu incorporasse melhores práticas e inovações que poderiam agregar valor ao projeto.
 
 ---
 
 ## 📝 Considerações Críticas e Criativas  
-Neste parágrafo, a equipe deve descrever o posicionamento tomado e já discutido nas considerações críticas e criativas realizadas ao longo da análise do objeto. É preciso transformar o Brainstorming ou o mapa conceitual em um ou dois parágrafos explicativos. 
-
-Durante a análise do Fastbite, discutimos a importância de criar uma interface amigável e um sistema que respondesse rapidamente às interações do usuário. A equipe considerou a experiência do usuário como um fator crucial, levando em conta a necessidade de um design responsivo e acessível. Além disso, refletimos sobre a segurança dos dados, implementando práticas que garantem a proteção das informações dos clientes. A criatividade foi fundamental para encontrar soluções que não apenas atendessem às necessidades funcionais, mas que também proporcionassem uma experiência agradável e memorável para os usuários.
+Durante a análise do Fastbite, considerei a importância de criar uma interface amigável e um sistema que respondesse rapidamente às interações do usuário. A experiência do usuário foi um fator crucial, levando em conta a necessidade de um design responsivo e acessível. Além disso, refleti sobre a segurança dos dados, implementando práticas que garantem a proteção das informações dos clientes. A criatividade foi fundamental para encontrar soluções que não apenas atendessem às necessidades funcionais, mas que também proporcionassem uma experiência agradável e memorável para os usuários.
 
 ---
 
 ## 📚 Reflexões Finais  
-Neste último parágrafo, a equipe deve concluir o seu resumo expandido apresentando como este estudo contribuiu para sua formação. Devem relatar as dificuldades e possibilidades encontradas durante a realização do trabalho informando resultados, o que teriam feito de diferente, se este objeto se adequa aos dias de hoje etc. Devem discorrer sobre os objetivos propostos a fim de refletir se foram alcançados ou não. 
-
 Neste projeto, entendi que o banco de dados é muito mais que uma simples tabela onde os dados são guardados — ele é a fundação que torna o sistema funcional, ágil e confiável. Criar um banco estruturado, manter sua integridade e integrá-lo corretamente com o servidor e o site é essencial para uma aplicação que deseja oferecer uma experiência memorável para seus usuários. 
 
-Aprendi também que a colaboração entre front-end, back-end e banco de dados é um processo contínuo de ajustes e melhorias, e que o entendimento profundo de cada parte faz toda a diferença na qualidade e no sucesso do sistema. As dificuldades encontradas, como a integração entre as diferentes tecnologias, foram superadas com pesquisa e testes, e isso me proporcionou um aprendizado valioso. Se eu pudesse fazer algo diferente, talvez investiria mais tempo na fase de testes para garantir que todas as funcionalidades estivessem perfeitamente alinhadas antes do lançamento. Este objeto se mostra extremamente relevante nos dias de hoje, considerando a crescente demanda por serviços de entrega e pedidos online.
+Aprendi também que a colaboração entre front-end, back-end e banco de dados é um processo contínuo de ajustes e melhorias, e que o entendimento profundo de cada parte faz toda a diferença na qualidade e no sucesso do sistema. As dificuldades encontradas, como a integração entre as diferentes tecnologias, foram superadas com pesquisa e testes, e isso me proporcionou um aprendizado valioso. Se eu pudesse fazer algo diferente, talvez investisse mais tempo na fase de testes para garantir que todas as funcionalidades estivessem perfeitamente alinhadas antes do lançamento. Este objeto se mostra extremamente relevante nos dias de hoje, considerando a crescente demanda por serviços de entrega e pedidos online.
 
 ---
 
