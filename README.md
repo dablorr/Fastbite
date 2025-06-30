@@ -16,7 +16,7 @@
 
 [Fastbite](https://dablorr.github.io/Fastbite/)
 
-- [Conteúdo](#Conteúdo)
+## Conteúdo:
 ## 🎯 Motivo da Escolha do Objeto de Estudo  
 Decidi focar neste projeto porque um banco de dados bem estruturado é a base essencial de qualquer sistema de pedidos online, especialmente para fast food, onde rapidez e organização são fundamentais. Entender profundamente como criar e integrar um banco de dados robusto com o site me permitiu aplicar conceitos práticos que garantem eficiência, segurança e uma experiência do usuário fluida.
 
